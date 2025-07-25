@@ -17,3 +17,10 @@ def hit():
     game.player_hit()
     session['game'] = game.__dict__
     return jsonify(game.get_game_state())
+    
+@game_bp.route('/stand', methods=['POST'])
+def stand():
+    game = get_game()
+    game.player_stand()
+    save_game(game)
+    return jsonify(game.get_game_state())
